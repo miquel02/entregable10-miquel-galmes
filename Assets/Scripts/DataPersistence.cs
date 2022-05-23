@@ -9,7 +9,11 @@ public class DataPersistence : MonoBehaviour
 
     public int level;
 
+    public bool HardMode;
 
+    public string username;
+
+    public float volumeValue;
 
 
     // Nos aseguramos de que la instancia sea única
@@ -33,6 +37,12 @@ public class DataPersistence : MonoBehaviour
     public void SaveForFutureGames()
     {       
         // Nivel
-        PlayerPrefs.SetInt("LEVEL", level);       
+        PlayerPrefs.SetInt("LEVEL", level);
+
+        //PlayerPrefs.SetBool("MODE", HardMode);
+
+        PlayerPrefs.SetString("USERNAME", username);
+
+        PlayerPrefs.SetFloat("VOLUMEVALUE", volumeValue);
     }
 }

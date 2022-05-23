@@ -16,6 +16,15 @@ public class OptionsController : MonoBehaviour
     private bool HardMode;
     public TextMeshProUGUI DifficultyText;
 
+    public string name;
+    public TMP_InputField username;
+
+
+    //public TMP_InputField moneyText;
+    //public float money;
+
+    public float volumeValue;
+
     public AudioMixer audioMixer;
 
     void Start()
@@ -23,6 +32,7 @@ public class OptionsController : MonoBehaviour
         gamePanel.SetActive(true);
         optionsPanel.SetActive(false);
         LvlText.text = "Level: " + level;
+        
 
         LoadUserOptions();
 
@@ -38,6 +48,11 @@ public class OptionsController : MonoBehaviour
         {
             DifficultyText.text = "Easy Mode";
         }
+
+        //name = username;
+
+        
+        
     }
 
     public void Options()
@@ -69,6 +84,7 @@ public class OptionsController : MonoBehaviour
         LvlText.text = "Level: " + level;
     }
 
+    /*
     public void HardBool()
     {
         HardMode = true;
@@ -78,12 +94,28 @@ public class OptionsController : MonoBehaviour
     {
         HardMode = false;
     }
+    */
+    
 
     public void Volume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);      
+        audioMixer.SetFloat("volume", volume);
+        volumeValue = volume;
     }
 
+    public void ToggleFun(bool b)
+    {
+        if(b)
+        {
+            HardMode = true; 
+            Debug.Log("easy");
+        }
+        else
+        {
+            HardMode = false;
+            Debug.Log("hard");
+        }
+    }
 
 
     //Data persistance
@@ -91,7 +123,13 @@ public class OptionsController : MonoBehaviour
     {
         // Persistencia de datos entre escenas
         DataPersistence.sharedInstance.level = level;
-       
+
+        DataPersistence.sharedInstance.HardMode = HardMode;
+
+        DataPersistence.sharedInstance.username = username.text;
+
+        DataPersistence.sharedInstance.volumeValue = volumeValue;
+
         // Persistencia de datos entre partidas
         DataPersistence.sharedInstance.SaveForFutureGames();
     }
@@ -104,11 +142,17 @@ public class OptionsController : MonoBehaviour
             
             level = PlayerPrefs.GetInt("LEVEL");
             UpdateLevel();
+
+            username.text = PlayerPrefs.GetString("USERNAME");
+
+            volumeValue = PlayerPrefs.GetFloat("VOLUMEVALUE");
+
+            //HardMode = PlayerPrefs.GetBool("MODE");
         }
     }
 
     private void UpdateLevel()
     {
-        LvlText.text = level.ToString();
+        LvlText.text = "Level: " + level;
     }
 }

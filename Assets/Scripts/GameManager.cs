@@ -10,7 +10,13 @@ public class GameManager : MonoBehaviour
     public static GameManager sharedInstance;
     
     public TextMeshProUGUI level;
-    
+
+    public TextMeshProUGUI HardMode;
+
+    public TextMeshProUGUI username;
+
+    public TextMeshProUGUI volumeValue;
+
 
     private void Awake()
     {
@@ -33,8 +39,10 @@ public class GameManager : MonoBehaviour
     public void ApplyUserOptions()
     {
         
-        level.text = DataPersistence.sharedInstance.level.ToString();
-       
+        level.text = $"Level: { DataPersistence.sharedInstance.level}";
+        HardMode.text = $"Hard Mode: {DataPersistence.sharedInstance.HardMode}";
+        username.text = $"Username: {DataPersistence.sharedInstance.username}";
+        volumeValue.text = $"Volume: { DataPersistence.sharedInstance.volumeValue}$";
     }
 
     

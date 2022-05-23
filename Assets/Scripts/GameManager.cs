@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager sharedInstance;
     
+
+    //Variables per guardaar els textos
     public TextMeshProUGUI level;
 
-    public TextMeshProUGUI HardMode;
+    public TextMeshProUGUI Diff;
 
     public TextMeshProUGUI username;
 
@@ -40,9 +42,9 @@ public class GameManager : MonoBehaviour
     {
         
         level.text = $"Level: { DataPersistence.sharedInstance.level}";
-        HardMode.text = $"Hard Mode: {DataPersistence.sharedInstance.HardMode}";
+        Diff.text = $"Hard Mode: {DataPersistence.sharedInstance.Diff}";
         username.text = $"Username: {DataPersistence.sharedInstance.username}";
-        volumeValue.text = $"Volume: { DataPersistence.sharedInstance.volumeValue}$";
+        volumeValue.text = $"Volume: { DataPersistence.sharedInstance.volumeValue}";
     }
 
     

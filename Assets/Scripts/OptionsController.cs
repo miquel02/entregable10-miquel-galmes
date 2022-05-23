@@ -10,19 +10,20 @@ public class OptionsController : MonoBehaviour
     public GameObject gamePanel;
     public GameObject optionsPanel;
 
+    //Variables per guardar el nivell
     public TextMeshProUGUI LvlText;
     private int level;
 
+    //Variables per guardar la dificultat
     private bool HardMode;
+    public int Diff;
     public TextMeshProUGUI DifficultyText;
 
+    //Variables per guardar el nom
     public string name;
     public TMP_InputField username;
 
-
-    //public TMP_InputField moneyText;
-    //public float money;
-
+    //Variable per guardar el volum
     public float volumeValue;
 
     public AudioMixer audioMixer;
@@ -33,7 +34,6 @@ public class OptionsController : MonoBehaviour
         optionsPanel.SetActive(false);
         LvlText.text = "Level: " + level;
         
-
         LoadUserOptions();
 
     }
@@ -43,10 +43,12 @@ public class OptionsController : MonoBehaviour
         if(HardMode== true)
         {
             DifficultyText.text = "Hard Mode";
+            Diff = 1;
         }
         else
         {
             DifficultyText.text = "Easy Mode";
+            Diff = 0;
         }
 
         //name = username;
@@ -55,6 +57,7 @@ public class OptionsController : MonoBehaviour
         
     }
 
+    //Funció per activar el panels
     public void Options()
     {
         gamePanel.SetActive(false);
@@ -66,6 +69,8 @@ public class OptionsController : MonoBehaviour
         optionsPanel.SetActive(false);
     }
 
+
+    //Funcions per seleccionar els nivells
     public void Lvl1()
     {
         level = 1;
@@ -83,37 +88,29 @@ public class OptionsController : MonoBehaviour
         level = 3;
         LvlText.text = "Level: " + level;
     }
-
-    /*
-    public void HardBool()
-    {
-        HardMode = true;
-    }
-
-    public void EasyBool()
-    {
-        HardMode = false;
-    }
-    */
     
-
+    //Funció per determinar el volum
     public void Volume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
         volumeValue = volume;
     }
 
+    
+
+
+    //Funcio per determinar que passa quan activam el
     public void ToggleFun(bool b)
     {
         if(b)
         {
             HardMode = true; 
-            Debug.Log("easy");
+            
         }
         else
         {
             HardMode = false;
-            Debug.Log("hard");
+            
         }
     }
 
@@ -124,7 +121,7 @@ public class OptionsController : MonoBehaviour
         // Persistencia de datos entre escenas
         DataPersistence.sharedInstance.level = level;
 
-        DataPersistence.sharedInstance.HardMode = HardMode;
+        DataPersistence.sharedInstance.Diff = Diff;
 
         DataPersistence.sharedInstance.username = username.text;
 
@@ -147,7 +144,7 @@ public class OptionsController : MonoBehaviour
 
             volumeValue = PlayerPrefs.GetFloat("VOLUMEVALUE");
 
-            //HardMode = PlayerPrefs.GetBool("MODE");
+            Diff = PlayerPrefs.GetInt("MODE");
         }
     }
 

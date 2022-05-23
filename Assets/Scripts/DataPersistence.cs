@@ -9,7 +9,7 @@ public class DataPersistence : MonoBehaviour
 
     public int level;
 
-    public bool HardMode;
+    public int Diff;
 
     public string username;
 
@@ -39,7 +39,7 @@ public class DataPersistence : MonoBehaviour
         // Nivel
         PlayerPrefs.SetInt("LEVEL", level);
 
-        //PlayerPrefs.SetBool("MODE", HardMode);
+        PlayerPrefs.SetInt("MODE", Diff);
 
         PlayerPrefs.SetString("USERNAME", username);
 

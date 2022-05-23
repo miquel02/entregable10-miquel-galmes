@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  HardMode: 0
+  Diff: 0
   username: 
   volumeValue: 0
 --- !u!4 &713055068
@@ -2622,6 +2622,7 @@ MonoBehaviour:
   gamePanel: {fileID: 1388003661}
   optionsPanel: {fileID: 1017522578}
   LvlText: {fileID: 844541518}
+  Diff: 0
   DifficultyText: {fileID: 1821888280}
   name: 
   username: {fileID: 1664430029}
